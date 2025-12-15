@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Zayn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="png/portfolio.mp4" type="video/mp4">
+  </video>
+
+  <button id="menu-toggle">☰</button>
+  <aside id="sidebar">
+     <button id="close-btn">✕</button>
+     <a href="#" data-target="home">Home</a>
+     <a href="#" data-target="about">About Me</a>
+     <a href="#" data-target="services">Services</a>
+     <a href="#" data-target="gallery">Projects</a>
+     <a href="#" data-target="contact">Contact Me</a>
+   </aside>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="page active">
+      <div class="home-container">
+        <div class="home-text">
+          <h1>Hi! I'm <span>Zayn,</span></h1>
+          <h2>A <span class="highlight">Web Developer</span></h2>
+          <p> Motivated first-year Web Development student with a strong eagerness to learn and grow in the field.
+               Passionate about coding, problem-solving, and building user-friendly websites. Enthusiastic, curious, and always seeking
+               opportunities to expand technical skills and stay updated with the latest web technologies. Excited to gain hands-on
+               experience and contribute to innovative projects.</p>
+          <div class="buttons">
+            <button>Hire Me</button>
+            <button id="go-to-contact">Contact Me</button>
+          </div>
+        </div>
+        <div class="home-image">
+          <img src="png/pppp.jpg" alt="Profile" />
+          <div class="corner top-left"></div>
+          <div class="corner bottom-right"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section id="about" class="page">
+      <div class="text">
+        <h1>About Me</h1>
+        <p>I'm Zayn, <span class="highlight">A Web Developer</span></p>
+       <p>
+          I'm currently pursuing a Bachelor's Degree in Web Development at Ecole Multi-Media (Oct 10 – Present). I have a strong foundation in tools like Microsoft Office Suite (Word, PowerPoint, Excel), Visual Studio Code, WordPress, and front-end technologies such as HTML, CSS, and JavaScript. I also have solid experience in backend development using Python and PHP.
+       </p>
+       <p>
+          My experience also includes working at Le Cedre in Paris, where I developed my soft skills—teamwork, problem-solving, and decision-making—while applying my technical knowledge in real-world scenarios. I am multilingual: fluent in English and French, native in Arabic, and intermediate in Turkish.
+       </p>
+        <div class="about-grid">
+          <div class="info-section">
+            <p><strong>Experience:</strong> 1+ years</p>
+            <p><strong>Availability:</strong> 24/7</p>
+            <p><strong>Age:</strong> 25</p>
+            <p><strong>Language Used:</strong> HTML</p>
+          </div>
+          <div class="info-section">
+            <p><strong>Country:</strong> Lebanon</p>
+            <p><strong>Satisfied Clients:</strong> 200+</p>
+            <p><strong>Phone:</strong> +33 759690900</p>
+            <p><strong>Degree:</strong> Bchelor</p>
+          </div>
+          <div class="skills-section">
+            <label>HTML</label><div class="bar"><div style="width: 100%"></div></div>
+            <label>CSS</label><div class="bar"><div style="width: 80%"></div></div>
+            <label>JavaScript</label><div class="bar"><div style="width: 90%"></div></div>
+            <label>React</label><div class="bar"><div style="width: 85%"></div></div>
+            <label>Vite</label><div class="bar"><div style="width: 80%"></div></div>
+            <label>Canvas</label><div class="bar"><div style="width: 75%"></div></div>
+            <label>Python</label><div class="bar"><div style="width: 70%"></div></div>
+            <label>PHP</label><div class="bar"><div style="width: 75%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="page">
+      <div class="text">
+        <div class="services-grid">
+          <div class="service-box"><h3>🛠 Web Design</h3><p>Crafting responsive, visually appealing websites with user-friendly layouts that reflect your brand identity.</p></div>
+          <div class="service-box"><h3>🌐 Web Development</h3><p>Building fast, secure, and scalable websites using the latest web technologies including HTML, CSS, JavaScript, and backend tools.</p></div>
+          <div class="service-box"><h3>🎨 Front-End</h3><p>Creating responsive and interactive user interfaces using HTML, CSS, JavaScript, React, and Vite. Building modern web experiences with clean, efficient code and interactive graphics using Canvas.</p></div>
+          <div class="service-box"><h3>⚙️ Back-End</h3><p>Building robust server-side applications using PHP and MySQL. Designing secure, scalable databases and efficient backend logic to power reliable web applications.</p></div>
+          <div class="service-box"><h3>📱 Software Developer</h3><p>Developing custom software and applications tailored to client needs, including automation tools and mobile-friendly solutions.</p></div>
+          <div class="service-box"><h3>🗄 Database Admin</h3><p>Managing and optimizing databases for performance, integrity, and security to ensure smooth business operations.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+     <section id="gallery" class="page">
+       <div class="text">
+         <div class="projects-grid">
+           <div class="project-card">
+             <h3>🎮 ClimaMaze Educatif Game</h3>
+             <p>An interactive educational game focused on climate awareness and environmental learning. Players navigate through engaging mechanics to learn sustainability principles and make eco-conscious decisions.</p>
+             <div class="project-tech">
+               <span>HTML</span>
+               <span>CSS</span>
+               <span>JavaScript</span>
+             </div>
+           </div>
+           <div class="project-card">
+             <h3>✈️ Pre-flight Checklist Application</h3>
+             <p>A comprehensive pre-flight checklist application for developers and teams. Inspired by aviation safety protocols, it helps ensure no important step is forgotten before finishing or deploying a project. Streamlines the development workflow and improves deployment reliability.</p>
+             <div class="project-tech">
+               <span>Vite</span>
+               <span>React</span>
+               <span>JSX</span>
+               <span>HTML</span>
+               <span>CSS</span>
+             </div>
+           </div>
+           <div class="project-card">
+             <h3>🐛 Bug Tracker Application</h3>
+             <p>A full-stack bug tracking system for development teams. Allows developers to report, track, and manage bugs throughout the development lifecycle. Features include issue prioritization, status updates, and team collaboration tools for efficient bug resolution.</p>
+             <div class="project-tech">
+               <span>PHP</span>
+               <span>MySQL</span>
+               <span>GitHub</span>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+
+    <!-- CONTACT ME -->
+    <section id="contact" class="page">
+      <div class="contact-container">
+        <div class="contact-info">
+          <p>📞 <strong>Mobile No:</strong> +33 759690900</p>
+          <p>📍 <strong>Location:</strong> Paris,France</p>
+          <p>✉️ <strong>Email:</strong> daher.zein12221@gmail.com</p>
+        </div>
+        <div class="contact-form">
+          <h2>Send Me A Message</h2>
+          <form>
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email" />
+            <textarea rows="5" placeholder="Type your message here..."></textarea>
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
