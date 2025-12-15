@@ -114,8 +114,7 @@ aside a:hover {
 /* === MAIN === */
 main {
   flex: 1;
-  padding: 2rem 3rem;
-  padding-top: calc(2rem + 20px);
+  padding: 50px 3rem 2rem 3rem;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   position: relative;
