@@ -70,3 +70,19 @@ if (contactButton) {
     switchToPage("contact");
   });
 }
+
+// Prevent double-tap zoom on buttons
+document.addEventListener('touchend', (e) => {
+  if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Fix viewport height on mobile (address bar appearing/disappearing)
+function setViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+setViewportHeight();
+window.addEventListener('resize', setViewportHeight);
+window.addEventListener('orientationchange', setViewportHeight);
