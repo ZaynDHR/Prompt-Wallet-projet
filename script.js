@@ -71,12 +71,18 @@ if (contactButton) {
   });
 }
 
-// Prevent double-tap zoom on buttons
+// Touch feedback for buttons
+document.addEventListener('touchstart', (e) => {
+  if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+    e.target.style.opacity = '0.8';
+  }
+}, { passive: true });
+
 document.addEventListener('touchend', (e) => {
   if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
-    e.preventDefault();
+    e.target.style.opacity = '1';
   }
-}, { passive: false });
+}, { passive: true });
 
 // Fix viewport height on mobile (address bar appearing/disappearing)
 function setViewportHeight() {
