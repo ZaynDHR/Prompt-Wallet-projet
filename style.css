@@ -577,6 +577,7 @@ input, textarea {
 
   .text {
     padding: 0.5rem;
+    padding-right: 100px;
   }
 
   .text h1 {
