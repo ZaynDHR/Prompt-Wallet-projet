@@ -1,0 +1,51 @@
+/* Info page styles */
+.info-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.info-page h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.info-content {
+  line-height: 1.6;
+}
+
+.info-content section {
+  margin-bottom: 2rem;
+}
+
+.info-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.info-content p {
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.footer-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.info-content.dark {
+  color: #e0e0e0;
+}
+
+.info-content.dark .footer-section {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.info-content.light {
+  color: #333;
+}
