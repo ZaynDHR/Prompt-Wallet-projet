@@ -1,4 +1,4 @@
-import { LayoutDashboard, Zap, FileText, Info, Moon, Sun, Plus, LogOut } from 'lucide-react';
+import { LayoutDashboard, Zap, FileText, Info, Moon, Sun, Plus, LogOut, CircleHelp } from 'lucide-react';
 import '../css/Sidebar.css';
 
 const Sidebar = ({ darkMode, setDarkMode, currentScreen, setCurrentScreen, setEditingPrompt, isOpen, setSidebarOpen, isMini, setIsMini, onLogout }) => {
@@ -55,7 +55,16 @@ const Sidebar = ({ darkMode, setDarkMode, currentScreen, setCurrentScreen, setEd
            <Info size={18} />
            {!isMini && <span>Terms of Use</span>}
          </button>
-      </nav>
+
+        <button
+           onClick={() => setCurrentScreen('about')}
+           className={`nav-btn ${currentScreen === 'about' ? 'active' : ''}`}
+           title="About"
+         >
+           <CircleHelp size={18} />
+           {!isMini && <span>About</span>}
+         </button>
+        </nav>
 
       <div className="sidebar-footer">
         <button

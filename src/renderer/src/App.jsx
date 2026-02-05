@@ -1,3 +1,10 @@
+/**
+ * @file App.jsx - Root application component
+ * @description Main component managing app state, routing, and data persistence
+ * @author Development Team at L'École Multimédia
+ * @version 1.0.0
+ */
+
 import { useState, useEffect } from 'react';
 import { Menu } from 'lucide-react';
 import Sidebar from './components/Sidebar';
@@ -5,9 +12,15 @@ import Dashboard from './pages/Dashboard';
 import PromptForm from './pages/PromptForm';
 import UsePrompt from './pages/UsePrompt';
 import TermsOfUse from './pages/TermsOfUse';
+import About from './pages/About';
 import Login from './pages/Login';
+import storage from './storage';
 import './css/App.css';
 
+/**
+ * Default prompts loaded on first launch
+ * @type {Array<{id: number, title: string, text: string, category: string, dynamicFields: string[]}>}
+ */
 const defaultPrompts = [
   { id: 1, title: 'Product Launch Campaign', text: 'Create a compelling marketing campaign for a new product launch targeting {audience}', category: 'Marketing', dynamicFields: ['audience'] },
   { id: 2, title: 'Blog Post Outline', text: 'Write a detailed outline for a blog post about {topic} in 2000 words', category: 'Création de Contenu', dynamicFields: ['topic'] },
@@ -27,24 +40,26 @@ const defaultPrompts = [
   { id: 16, title: 'Bug Fix Guide', text: 'Provide a step-by-step guide to fix {bug} in {application} using {technology}', category: 'Développement', dynamicFields: ['bug', 'application', 'technology'] }
 ];
 
-const storage = {
-  get data() {
-    const stored = localStorage.getItem('prompts');
-    if (!stored || stored === '[]') {
-      return defaultPrompts;
-    }
-    return JSON.parse(stored);
-  },
-  save(prompts) {
-    localStorage.setItem('prompts', JSON.stringify(prompts));
-  }
+/**
+ * Initialize prompts from storage or use defaults
+ * @returns {Array} Initial prompts array
+ */
+const getInitialPrompts = () => {
+  const stored = storage.data;
+  return stored || defaultPrompts;
 };
 
+/**
+ * Main App Component
+ * Manages application state, routing, and core business logic
+ * @component
+ * @returns {React.ReactElement} Root application element
+ */
 const App = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentScreen, setCurrentScreen] = useState('login');
-  const [prompts, setPrompts] = useState(storage.data);
+  const [prompts, setPrompts] = useState(getInitialPrompts());
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [editingPrompt, setEditingPrompt] = useState(null);
@@ -81,10 +96,19 @@ const App = () => {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
 
+  /**
+   * Handle drag over event for file import
+   * @param {React.DragEvent} e - Drag event
+   */
   const handleDragOver = (e) => {
     e.preventDefault();
   };
 
+  /**
+   * Handle file drop event to import prompts from .txt files
+   * Reads file content and creates new prompt
+   * @param {React.DragEvent} e - Drop event
+   */
   const handleDrop = (e) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
@@ -104,6 +128,15 @@ const App = () => {
     }
   };
 
+  /**
+   * Add a new prompt or update existing prompt
+   * Auto-saves to storage via useEffect
+   * @param {Object} prompt - Prompt object to add/update
+   * @param {string} prompt.title - Prompt title
+   * @param {string} prompt.text - Prompt content
+   * @param {string} prompt.category - Prompt category
+   * @param {Array<string>} prompt.dynamicFields - Dynamic placeholder fields
+   */
   const addPrompt = (prompt) => {
     if (editingPrompt && editingPrompt.id) {
       setPrompts(prompts.map(p => 
@@ -116,12 +149,21 @@ const App = () => {
     setCurrentScreen('dashboard');
   };
 
+  /**
+   * Delete a prompt with user confirmation
+   * @param {number} id - Prompt ID to delete
+   */
   const deletePrompt = (id) => {
     if (window.confirm('Are you sure you want to delete this prompt?')) {
       setPrompts(prompts.filter(p => p.id !== id));
     }
   };
 
+  /**
+   * Handle user login
+   * @param {string} email - User email
+   * @param {string} password - User password
+   */
   const handleLogin = (email, password) => {
     if (email && password) {
       setIsLoggedIn(true);
@@ -129,6 +171,10 @@ const App = () => {
     }
   };
 
+  /**
+   * Handle user logout
+   * Clears auth state and returns to login screen
+   */
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentScreen('login');
@@ -224,6 +270,8 @@ const App = () => {
         )}
 
         {currentScreen === 'terms' && <TermsOfUse darkMode={darkMode} />}
+
+        {currentScreen === 'about' && <About darkMode={darkMode} />}
       </div>
     </div>
   );

@@ -1,9 +1,17 @@
-import Store from 'electron-store'
+import Store from 'electron-store';
 
-export const saveToStore =(key, value) => {
-  Store.set(key, value)
-}
+const store = new Store();
 
-export const loadFromStore =(key) => {
- return Store.get(key)
-}
+export const saveToStore = (key, value) => {
+  store.set(key, value);
+};
+
+export const loadFromStore = (key) => {
+  return store.get(key);
+};
+
+export const deleteFromStore = (key) => {
+  store.delete(key);
+};
+
+export default store;
