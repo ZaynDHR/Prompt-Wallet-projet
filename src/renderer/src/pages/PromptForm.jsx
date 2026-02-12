@@ -39,8 +39,7 @@ const PromptForm = ({ darkMode, categories, onSubmit, onCancel, editingPrompt })
             id="title"
             type="text"
             value={title}
-            onChange={(e) => setTitle(e.target.value.slice(0, 10))}
-            maxLength="10"
+            onChange={(e) => setTitle(e.target.value)}
             placeholder="Give your prompt a descriptive title (e.g., 'SEO Blog Post Generator')"
             className={`form-input ${darkMode ? 'dark' : 'light'}`}
           />
@@ -61,16 +60,20 @@ const PromptForm = ({ darkMode, categories, onSubmit, onCancel, editingPrompt })
 
         <div className="form-group">
           <label htmlFor="category">Category</label>
-          <select
+          <input
             id="category"
+            type="text"
+            list="category-suggestions"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className={`form-select ${darkMode ? 'dark' : 'light'}`}
-          >
+            placeholder="Choose or type a custom category"
+            className={`form-input ${darkMode ? 'dark' : 'light'}`}
+          />
+          <datalist id="category-suggestions">
             {categories.map(cat => (
-              <option key={cat} value={cat}>{cat}</option>
+              <option key={cat} value={cat} />
             ))}
-          </select>
+          </datalist>
         </div>
 
         <div className="form-group">
