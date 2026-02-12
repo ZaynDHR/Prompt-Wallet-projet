@@ -1,16 +1,7 @@
-import { useState } from 'react';
-import { Copy, Edit2, Trash2 } from 'lucide-react';
+import { Zap, Edit2, Trash2 } from 'lucide-react';
 import '../css/PromptCard.css';
 
-const PromptCard = ({ prompt, darkMode, onEdit, onDelete }) => {
-  const [copied, setCopied] = useState(false);
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(prompt.text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
+const PromptCard = ({ prompt, darkMode, onEdit, onDelete, onUse }) => {
   return (
     <div className={`prompt-card ${darkMode ? 'dark' : 'light'}`}>
       <div className="prompt-header">
@@ -20,11 +11,11 @@ const PromptCard = ({ prompt, darkMode, onEdit, onDelete }) => {
       <p className="prompt-preview">{prompt.text}</p>
       <div className="prompt-actions">
         <button
-          onClick={copyToClipboard}
+          onClick={onUse}
           className="btn-copy"
         >
-          <Copy size={14} />
-           {copied ? 'Copied!' : 'Copy'}
+          <Zap size={14} />
+           Use
         </button>
         <button
           onClick={onEdit}

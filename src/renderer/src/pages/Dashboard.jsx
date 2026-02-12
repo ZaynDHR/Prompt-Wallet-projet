@@ -142,6 +142,7 @@ const Dashboard = ({
                 darkMode={darkMode}
                 onEdit={() => handleEditPrompt(prompt)}
                 onDelete={() => deletePrompt(prompt.id)}
+                onUse={() => setCurrentScreen('use')}
               />
             ))}
           </div>
