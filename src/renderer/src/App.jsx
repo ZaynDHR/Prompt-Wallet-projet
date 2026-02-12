@@ -157,7 +157,11 @@ const App = () => {
     }
   };
 
-  const categories = ['Marketing', 'Création de Contenu', 'E-commerce', 'Développement'];
+  const defaultCategories = ['Marketing', 'Création de Contenu', 'E-commerce', 'Développement'];
+  const customCategories = prompts
+    .map(p => p.category)
+    .filter(cat => cat && !defaultCategories.includes(cat));
+  const categories = [...defaultCategories, ...new Set(customCategories)];
 
   const filteredPrompts = prompts.filter(p => {
     const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
