@@ -8,7 +8,7 @@
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint --cache .",
-    "start": "electron-vite preview",
+    "start": "react-scripts start",
     "dev": "electron-vite dev -w",
     "build": "electron-vite build",
     "test": "vitest",

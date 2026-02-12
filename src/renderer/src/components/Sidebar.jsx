@@ -1,7 +1,7 @@
-import { LayoutDashboard, Zap, FileText, Info, Moon, Sun, Plus, LogOut, CircleHelp } from 'lucide-react';
+import { LayoutDashboard, Zap, FileText, Info, Moon, Sun, Plus, CircleHelp } from 'lucide-react';
 import '../css/Sidebar.css';
 
-const Sidebar = ({ darkMode, setDarkMode, currentScreen, setCurrentScreen, setEditingPrompt, isOpen, setSidebarOpen, isMini, setIsMini, onLogout }) => {
+const Sidebar = ({ darkMode, setDarkMode, currentScreen, setCurrentScreen, setEditingPrompt, isOpen, setSidebarOpen, isMini, setIsMini }) => {
   const handleNewPrompt = () => {
     setCurrentScreen('form');
     setEditingPrompt(null);
@@ -84,14 +84,7 @@ const Sidebar = ({ darkMode, setDarkMode, currentScreen, setCurrentScreen, setEd
           {!isMini && <span>{darkMode ? 'Light' : 'Dark'}</span>}
         </button>
         {!isMini && <p className="keyboard-shortcuts">Ctrl+N: New | Ctrl+D: Dashboard</p>}
-        <button
-          onClick={onLogout}
-          className="btn-logout"
-          title="Logout"
-        >
-          <LogOut size={18} />
-          {!isMini && <span>Logout</span>}
-        </button>
+
         </div>
     </div>
   );

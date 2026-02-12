@@ -13,7 +13,6 @@ import PromptForm from './pages/PromptForm';
 import UsePrompt from './pages/UsePrompt';
 import TermsOfUse from './pages/TermsOfUse';
 import About from './pages/About';
-import Login from './pages/Login';
 import storage from './storage';
 import './css/App.css';
 
@@ -57,8 +56,7 @@ const getInitialPrompts = () => {
  */
 const App = () => {
   const [darkMode, setDarkMode] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentScreen, setCurrentScreen] = useState('login');
+  const [currentScreen, setCurrentScreen] = useState('dashboard');
   const [prompts, setPrompts] = useState(getInitialPrompts());
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -159,27 +157,6 @@ const App = () => {
     }
   };
 
-  /**
-   * Handle user login
-   * @param {string} email - User email
-   * @param {string} password - User password
-   */
-  const handleLogin = (email, password) => {
-    if (email && password) {
-      setIsLoggedIn(true);
-      setCurrentScreen('dashboard');
-    }
-  };
-
-  /**
-   * Handle user logout
-   * Clears auth state and returns to login screen
-   */
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setCurrentScreen('login');
-  };
-
   const categories = ['Marketing', 'Création de Contenu', 'E-commerce', 'Développement'];
 
   const filteredPrompts = prompts.filter(p => {
@@ -188,21 +165,6 @@ const App = () => {
     const matchesCategory = selectedCategory === 'all' || p.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
-
-  if (!isLoggedIn) {
-    return (
-      <div className={`app ${darkMode ? 'dark' : 'light'}`}>
-        <div className={`main-content full-screen`}>
-          <Login 
-            darkMode={darkMode}
-            onLogin={handleLogin}
-            setDarkMode={setDarkMode}
-            setCurrentScreen={setCurrentScreen}
-          />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div 
@@ -220,7 +182,6 @@ const App = () => {
         setSidebarOpen={setSidebarOpen}
         isMini={sidebarMini}
         setIsMini={setSidebarMini}
-        onLogout={handleLogout}
       />
 
       <div className={`main-content ${sidebarOpen ? 'sidebar-open' : 'sidebar-closed'} ${sidebarMini ? 'sidebar-mini' : ''}`}>
