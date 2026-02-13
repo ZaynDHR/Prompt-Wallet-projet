@@ -1,16 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../css/PromptForm.css';
 
 const PromptForm = ({ darkMode, categories, onSubmit, onCancel, editingPrompt }) => {
-  const [title, setTitle] = useState(editingPrompt?.title || '');
-  const [text, setText] = useState(editingPrompt?.text || '');
-  const [category, setCategory] = useState(editingPrompt?.category || categories[0]);
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
+  const [category, setCategory] = useState('');
+
+  useEffect(() => {
+    setTitle(editingPrompt?.title || '');
+    setText(editingPrompt?.text || '');
+    setCategory(editingPrompt?.category || categories[0] || '');
+  }, [editingPrompt, categories]);
   const handleSubmit = () => {
     if (!title.trim() || !text.trim()) {
       alert('Please fill in all required fields');
       return;
     }
-    onSubmit({ title, text, category, dynamicFields: [] });
+    if (!category.trim()) {
+      alert('Please select or enter a category');
+      return;
+    }
+    onSubmit({ title, text, category: category.trim(), dynamicFields: [] });
   };
 
   return (

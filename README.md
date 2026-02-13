@@ -130,23 +130,6 @@ npm run lint
 npm run format
 ```
 
-### Testing
-
-**Run unit tests:**
-```bash
-npm test
-```
-
-**Run tests with UI:**
-```bash
-npm run test:ui
-```
-
-Tests cover:
-- Storage module (data persistence)
-- PromptCard component (rendering and interactions)
-- StatCard component (display and theming)
-
 ## Usage
 
 1. **Login**: Start with the login screen (any email/password works)

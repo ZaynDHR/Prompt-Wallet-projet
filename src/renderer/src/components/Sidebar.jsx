@@ -1,4 +1,4 @@
-import { LayoutDashboard, Zap, FileText, Info, Moon, Sun, Plus, CircleHelp } from 'lucide-react';
+import { LayoutDashboard, Zap, Info, Moon, Sun, Plus, CircleHelp } from 'lucide-react';
 import '../css/Sidebar.css';
 
 const Sidebar = ({ darkMode, setDarkMode, currentScreen, setCurrentScreen, setEditingPrompt, isOpen, setSidebarOpen, isMini, setIsMini }) => {

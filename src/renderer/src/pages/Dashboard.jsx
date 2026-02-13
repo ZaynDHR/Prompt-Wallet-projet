@@ -19,12 +19,10 @@ const Dashboard = ({
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
-  const stats = {
-    marketing: filteredPrompts.filter(p => p.category === 'Marketing').length,
-    content: filteredPrompts.filter(p => p.category === 'Création de Contenu').length,
-    ecommerce: filteredPrompts.filter(p => p.category === 'E-commerce').length,
-    dev: filteredPrompts.filter(p => p.category === 'Développement').length
-  };
+  const stats = categories.reduce((acc, cat) => {
+    acc[cat] = filteredPrompts.filter(p => p.category === cat).length;
+    return acc;
+  }, {});
 
   const totalPages = Math.ceil(filteredPrompts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -87,10 +85,14 @@ const Dashboard = ({
           </div>
 
           <div className="stats-grid">
-            <StatCard darkMode={darkMode} title="Prompts Marketing" value={stats.marketing} />
-            <StatCard darkMode={darkMode} title="Prompts contenu" value={stats.content} />
-            <StatCard darkMode={darkMode} title="Prompts e-commerce" value={stats.ecommerce} />
-            <StatCard darkMode={darkMode} title="Prompts dev" value={stats.dev} />
+            {categories.map(cat => (
+              <StatCard 
+                key={cat}
+                darkMode={darkMode} 
+                title={`Prompts ${cat}`} 
+                value={stats[cat] || 0} 
+              />
+            ))}
           </div>
         </div>
 

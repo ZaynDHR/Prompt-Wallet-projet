@@ -13,6 +13,7 @@ import PromptForm from './pages/PromptForm';
 import UsePrompt from './pages/UsePrompt';
 import TermsOfUse from './pages/TermsOfUse';
 import About from './pages/About';
+import ConfirmDialog from './components/ConfirmDialog';
 import storage from './storage';
 import './css/App.css';
 
@@ -63,6 +64,7 @@ const App = () => {
   const [editingPrompt, setEditingPrompt] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [sidebarMini, setSidebarMini] = useState(true);
+  const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, promptId: null });
 
   useEffect(() => {
     storage.save(prompts);
@@ -93,14 +95,6 @@ const App = () => {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
-
-  /**
-   * Handle drag over event for file import
-   * @param {React.DragEvent} e - Drag event
-   */
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
 
   /**
    * Handle file drop event to import prompts from .txt files
@@ -152,9 +146,18 @@ const App = () => {
    * @param {number} id - Prompt ID to delete
    */
   const deletePrompt = (id) => {
-    if (window.confirm('Are you sure you want to delete this prompt?')) {
-      setPrompts(prompts.filter(p => p.id !== id));
+    setConfirmDialog({ isOpen: true, promptId: id });
+  };
+
+  const confirmDelete = () => {
+    if (confirmDialog.promptId) {
+      setPrompts(prompts.filter(p => p.id !== confirmDialog.promptId));
     }
+    setConfirmDialog({ isOpen: false, promptId: null });
+  };
+
+  const cancelDelete = () => {
+    setConfirmDialog({ isOpen: false, promptId: null });
   };
 
   const defaultCategories = ['Marketing', 'Création de Contenu', 'E-commerce', 'Développement'];
@@ -173,9 +176,18 @@ const App = () => {
   return (
     <div 
       className={`app ${darkMode ? 'dark' : 'light'}`}
-      onDragOver={handleDragOver}
+      onDragOver={(e) => e.preventDefault()}
       onDrop={handleDrop}
     >
+      <ConfirmDialog
+        isOpen={confirmDialog.isOpen}
+        title="Delete Prompt"
+        message="Are you sure you want to delete this prompt? This action cannot be undone."
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+        darkMode={darkMode}
+      />
+
       <Sidebar 
         darkMode={darkMode}
         setDarkMode={setDarkMode}
